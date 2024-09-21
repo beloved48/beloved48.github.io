@@ -1,0 +1,189 @@
+/* 
+全局样式：
+设置全局字体、背景颜色和文本颜色。
+*/
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+/* 
+h1 标题样式：
+设置标题的字体、颜色和居中显示。
+*/
+h1 {
+    font-family: 'Georgia', serif;
+    color: #333;
+    text-align: center;
+}
+
+/* 
+主内容区样式：
+为 main 元素设置内边距和居中对齐方式。
+*/
+main {
+    padding: 20px;
+    text-align: center;
+}
+
+/* 
+导航栏样式：
+设置导航栏的背景颜色、内边距和文字居中对齐。
+*/
+nav {
+    background-color: #4CAF50;
+    padding: 10px;
+    text-align: center;
+}
+
+/* 
+导航菜单样式：
+移除默认的列表样式，并设置内外边距。
+*/
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* 
+导航菜单项样式：
+将列表项显示为内联元素，并设置左右间距。
+*/
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+/* 
+导航链接样式：
+设置链接的颜色、文本修饰、内边距以及圆角。
+并添加悬停时的颜色过渡效果。
+*/
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+/* 
+导航链接悬停效果：
+当用户悬停时，改变背景颜色。
+*/
+nav ul li a:hover {
+    background-color: #45a049;
+}
+
+/* 
+页脚样式：
+设置页脚的背景颜色、文本颜色、内边距和居中对齐。
+移除了 position: absolute 来避免覆盖内容。
+*/
+footer {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+    /* position: absolute;  移除该属性避免覆盖内容 */
+}
+
+/* 
+响应式设计：
+在屏幕宽度小于600px时，将导航菜单项显示为块元素，并增加垂直间距。
+*/
+@media (max-width: 600px) {
+    nav ul li {
+        display: block;
+        margin: 10px 0;
+    }
+}
+
+/* 
+淡入效果：
+用于设置元素淡入动画，透明度从0逐渐过渡到1。
+*/
+.fade-in {
+    opacity: 0;
+    transition: opacity 2s ease-in;
+}
+
+.fade-in.visible {
+    opacity: 1;
+}
+
+/* 
+图片样式：
+设置图片全宽显示，并保证图片保持原始宽高比。
+*/
+.full-image {
+    width: 100%;
+    height: auto;
+}
+
+/* 
+按钮样式：
+为按钮设置内边距、背景颜色、文本颜色、圆角边框，并添加过渡效果。
+*/
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+/* 
+按钮悬停效果：
+当用户悬停时，改变按钮背景颜色。
+*/
+.btn:hover {
+    background-color: #45a049;
+}
+
+/* 
+产品展示区样式：
+将 .features 设置为 flexbox 布局，均匀分布其子项，并设置内边距和背景颜色。
+*/
+.features {
+    display: flex;
+    justify-content: space-around;
+    padding: 50px 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+/* 
+单个产品展示模块样式：
+为每个 .feature 元素设置宽度、内边距和文本样式。
+*/
+.feature {
+    width: 30%;
+    padding: 20px;
+}
+
+/* 
+产品标题样式：
+设置产品标题的字体大小和颜色。
+*/
+.feature h3 {
+    font-size: 1.8rem;
+    color: #333;
+}
+
+/* 
+产品描述文本样式：
+设置产品描述的字体大小和颜色。
+*/
+.feature p {
+    font-size: 1rem;
+    color: #555;
+}
