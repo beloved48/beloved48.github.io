@@ -308,14 +308,14 @@ footer {
 
 /* 英雄区样式 */
 .hero {
-    max-width: 800px; /* 限制英雄区块的最大宽度 */
+    max-width: 500px; /* 限制英雄区块的最大宽度 */
     margin: 0 auto; /* 使整个英雄区块居中 */
     padding: 20px; /* 添加内边距 */
     text-align: center; /* 内容居中 */
 }
 
 .full-image {
-    width: 50%; /* 图片宽度为80%，可以调整数值 */
+    width: 30%; /* 图片宽度为80%，可以调整数值 */
     height: auto; /* 保持宽高比 */
     max-width: 600px; /* 限制最大宽度 */
     display: block;
