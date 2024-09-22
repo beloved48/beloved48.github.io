@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>资料下载 - Jasminechip</title>
+    <!-- 引入全局样式文件 -->
+    <link rel="stylesheet" href="../css/main.css">
+    <!-- 引入当前页面的样式文件 -->
+    <link rel="stylesheet" href="../css/download.css">
+</head>
+<body>
+
+    <!-- 页头部分，包括导航栏 -->
+    <header>
+        <h1>资料下载</h1>
+        <div id="navbar"></div> <!-- 导航栏的占位符 -->
+
+        <script>
+            // 使用 fetch 动态加载导航栏
+            fetch('../includes/nav.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading navigation:', error));
+        </script>
+    </header>
+
+    <!-- 主内容区域 -->
+    <main>
+        <!-- 搜索栏 -->
+        <section>
+            <h2>可下载资料列表</h2>
+            <p>请通过搜索查找所需的资料：</p>
+
+            <!-- 搜索框 -->
+            <input type="text" id="searchInput" onkeyup="searchFiles()" placeholder="搜索资料..." class="search-bar">
+
+            <!-- 可下载资料列表 -->
+            <ul id="fileList">
+                <li>
+                    <a href="doc/QinlingCPU.pdf" class="download-link" data-file="docs/QinlingCPU.pdf">避免遗忘QinlingCPU</a>
+                </li>
+                <li>
+                    <a href="docs/manual2.pdf" class="download-link" data-file="docs/manual2.pdf">芯片手册 2</a>
+                </li>
+                <li>
+                    <a href="docs/manual3.pdf" class="download-link" data-file="docs/manual3.pdf">芯片手册 3</a>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <!-- 密码输入框弹出 -->
+    <div id="passwordModal" style="display:none;">  <!-- 初始隐藏密码弹出框 -->
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal()">&times;</button>
+            <h3>请输入下载密码</h3>
+            <input type="password" id="passwordInput" placeholder="请输入密码">
+            <button onclick="checkPassword()">提交</button>
+            <p id="passwordError">密码错误，请重试。</p>
+        </div>
+    </div>
+
+    <!-- 页脚部分 -->
+    <footer>
+        <p>&copy; 2024 Jasminechip</p>
+    </footer>
+
+    <!-- 添加JavaScript脚本 -->
+    <script>
+        const correctPassword = "123456";  // 设置正确的密码
+        let selectedLink = null; // 保存当前点击的下载链接
+
+        document.addEventListener("DOMContentLoaded", function() {
+            // 监听所有下载链接的点击事件
+            document.querySelectorAll('.download-link').forEach(link => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();  // 阻止默认的下载行为
+                    selectedLink = link;  // 保存当前点击的链接
+                    document.getElementById('passwordModal').style.display = 'flex';  // 显示密码输入框
+                });
+            });
+        });
+
+        // 检查密码是否正确
+        function checkPassword() {
+            const enteredPassword = document.getElementById('passwordInput').value;
+            if (enteredPassword === correctPassword) {
+                // 如果密码正确，隐藏弹出框并允许下载
+                document.getElementById('passwordModal').style.display = 'none';
+                window.location.href = selectedLink.getAttribute('data-file');  // 开始下载
+            } else {
+                // 如果密码错误，显示错误消息
+                document.getElementById('passwordError').style.display = 'block';
+            }
+        }
+
+        // 关闭密码弹出框
+        function closeModal() {
+            document.getElementById('passwordModal').style.display = 'none';
+        }
+
+        // 搜索功能
+        function searchFiles() {
+            var input = document.getElementById("searchInput");
+            var filter = input.value.toLowerCase();
+            var ul = document.getElementById("fileList");
+            var li = ul.getElementsByTagName("li");
+
+            // 遍历所有列表项，根据输入值过滤资料
+            for (var i = 0; i < li.length; i++) {
+                var a = li[i].getElementsByTagName("a")[0];
+                var textValue = a.textContent || a.innerText;
+
+                if (textValue.toLowerCase().indexOf(filter) > -1) {
+                    li[i].style.display = "";
+                } else {
+                    li[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>

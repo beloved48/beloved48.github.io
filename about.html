@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于我们 - Jasminechip</title>
+    <!-- 引入CSS样式文件 -->
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+
+    <!-- 页头部分，包括导航栏 -->
+    <header>
+        <h1>关于我们</h1>
+        <div id="navbar"></div> <!-- 导航栏的占位符 -->
+
+        <script>
+            // 使用 fetch 动态加载导航栏
+            fetch('../includes/nav.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading navigation:', error));
+        </script>
+    </header>
+
+    <!-- 主内容区域 -->
+    <main>
+        <!-- 关于公司的描述 -->
+        <section>
+            <h2>我们的使命</h2>
+            <p>
+                Jasminechip 是一家致力于开发高效低功耗芯片的技术公司，旨在通过先进的技术和创新的设计，推动物联网、智能设备和工业自动化的发展。我们的芯片以卓越的性能和出色的能效比，满足各种应用场景的需求。
+            </p>
+        </section>
+
+        <!-- 产品特点展示 -->
+        <section>
+            <h2>我们的核心产品</h2>
+            <ul>
+                <li>异构多核架构：提供强大的计算能力和低延迟性能。</li>
+                <li>超低功耗设计：有效减少能源消耗，适用于移动设备和嵌入式系统。</li>
+                <li>广泛的应用场景：覆盖物联网、智能家居、工业自动化等多个领域。</li>
+            </ul>
+        </section>
+
+        <!-- 团队介绍 -->
+        <section>
+            <h2>我们的团队</h2>
+            <p>
+                我们的团队由经验丰富的半导体工程师、软件开发人员和行业专家组成，大家共同致力于推动芯片技术的革新，确保我们的解决方案符合客户的需求和市场的发展趋势。
+            </p>
+        </section>
+    </main>
+
+    <!-- 页脚部分 -->
+    <footer>
+        <p>&copy; 2024 Jasminechip</p>
+    </footer>
+
+</body>
+</html>

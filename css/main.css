@@ -2,23 +2,81 @@
 全局样式：
 设置全局字体、背景颜色和文本颜色。
 */
-body {
+
+  /* 全局样式 - 使用背景图片 */
+/* 全局背景的玻璃窗效果 */
+
+  /* 全局背景的玻璃窗效果 */
+  body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f9f9f9;
-    color: #333;
+    /* 添加半透明白色叠加层 */
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                url('../assets/images/rain.webp'); /* 背景图片 */
+    background-size: cover; /* 确保背景图片覆盖整个页面 */
+    color: #fff; /* 设置白色文字，增强对比度 */
+    backdrop-filter: blur(10px); /* 玻璃模糊效果 */
 }
+
+
+/* 雨滴背景层 */
+.rain-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* 防止背景干扰用户操作 */
+    z-index: -1; /* 确保在内容后面 */
+    overflow: hidden;
+}
+
+/* 雨滴样式 */
+.drop {
+    position: absolute;
+    bottom: 100%;
+    width: 2px; /* 雨滴的宽度 */
+    height: 50px; /* 雨滴的高度 */
+    background: rgba(255, 255, 255, 0.2); /* 透明白色，模拟雨滴 */
+    border-radius: 50%;
+    filter: blur(2px); /* 模糊效果，模拟玻璃上的雨滴 */
+    animation: fall linear infinite;
+}
+
+/* 雨滴下落动画 */
+@keyframes fall {
+    to {
+        transform: translateY(100vh); /* 让雨滴从页面顶部下落到底部 */
+    }
+}
+
+
 
 /* 
 h1 标题样式：
 设置标题的字体、颜色和居中显示。
 */
+header {
+    text-align: center; /* 确保父容器中的内容居中 */
+    padding: 20px;
+}
+
+/* 标题样式，增加上下的外边距 */
 h1 {
     font-family: 'Georgia', serif;
-    color: #333;
+    color: #fff; /* 设置白色字体 */
     text-align: center;
+    background: rgba(255, 255, 255, 0.2); /* 半透明背景 */
+    backdrop-filter: blur(10px); /* 毛玻璃效果 */
+    padding: 20px; /* 内边距，提升可读性 */
+    border-radius: 10px; /* 圆角，让背景更加柔和 */
+    display: inline-block; /* 保证毛玻璃效果只应用在文字区域 */
+    margin: 20px auto; /* 上下20px的外边距，确保标题和其他内容之间有空间 */
 }
+
+/* 导航栏样式，增加上下的外边距 */
+
 
 /* 
 主内容区样式：
@@ -33,52 +91,64 @@ main {
 导航栏样式：
 设置导航栏的背景颜色、内边距和文字居中对齐。
 */
+/* 导航栏样式，添加毛玻璃效果 */
+/* 导航栏样式，添加毛玻璃效果 */
 nav {
-    background-color: #4CAF50;
+    background-color: rgba(255, 255, 255, 0.2); /* 半透明背景 */
+    backdrop-filter: blur(10px); /* 毛玻璃模糊效果 */
     padding: 10px;
     text-align: center;
+    border-radius: 15px; /* 圆角效果 */
+    width: 90%; /* 导航栏宽度为90% */
+    margin: 20px auto; /* 上下20px的外边距，创建与标题和其他内容的距离 */
 }
 
-/* 
-导航菜单样式：
-移除默认的列表样式，并设置内外边距。
-*/
+/* 导航菜单样式 */
 nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
-/* 
-导航菜单项样式：
-将列表项显示为内联元素，并设置左右间距。
-*/
+/* 导航菜单项样式 */
 nav ul li {
     display: inline;
     margin: 0 15px;
 }
 
-/* 
-导航链接样式：
-设置链接的颜色、文本修饰、内边距以及圆角。
-并添加悬停时的颜色过渡效果。
-*/
-nav ul li a {
-    color: white;
+/* 导航链接样式：设置链接为白色，并覆盖所有状态 */
+nav ul li a,
+a {
+    color: white !important; /* 强制将链接文字颜色设为白色 */
     text-decoration: none;
     font-weight: bold;
     padding: 8px 16px;
     border-radius: 4px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, backdrop-filter 0.3s ease; /* 添加过渡效果 */
+    display: inline-block; /* 确保链接在其内部显示，避免影响其他链接 */
 }
 
-/* 
-导航链接悬停效果：
-当用户悬停时，改变背景颜色。
-*/
-nav ul li a:hover {
-    background-color: #45a049;
+/* 链接悬停样式，保持毛玻璃效果 */
+nav ul li a:hover,
+a:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* 设置半透明的背景色 */
+    backdrop-filter: blur(5px); /* 毛玻璃效果 */
+    color: white; /* 悬停时文字保持白色 */
 }
+
+/* 已访问链接的样式 */
+nav ul li a:visited,
+a:visited {
+    color: white !important; /* 保持访问过的链接为白色 */
+}
+
+/* 激活时的链接样式 */
+nav ul li a:active,
+a:active {
+    color: white !important; /* 点击时链接保持白色 */
+}
+
+
 
 /* 
 页脚样式：
@@ -134,7 +204,7 @@ footer {
 .btn {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #4CAF50;
+    background-color: #00509E;
     color: white;
     text-decoration: none;
     border-radius: 5px;
@@ -146,7 +216,7 @@ footer {
 当用户悬停时，改变按钮背景颜色。
 */
 .btn:hover {
-    background-color: #45a049;
+    background-color: #00509E; /* 悬停时改变为浅蓝色 */
 }
 
 /* 
@@ -156,34 +226,86 @@ footer {
 .features {
     display: flex;
     justify-content: space-around;
+    align-items: center; /* 确保子元素在垂直方向居中 */
     padding: 50px 20px;
-    background-color: #f9f9f9;
+    background-color: rgba(255, 255, 255, 0.1); /* 半透明背景 */
+    backdrop-filter: blur(10px); /* 毛玻璃效果 */
+    border-radius: 15px; /* 设置圆角 */
     text-align: center;
+    margin: 0 auto; /* 居中对齐 */
 }
 
-/* 
-单个产品展示模块样式：
-为每个 .feature 元素设置宽度、内边距和文本样式。
-*/
+/* 单个产品展示模块样式：宽度、内边距、文本样式、毛玻璃效果 */
+.features {
+    display: flex;
+    justify-content: space-around;
+    align-items: stretch; /* 确保每个子元素的高度一致 */
+    padding: 50px 20px;
+    background-color: rgba(255, 255, 255, 0.1); /* 半透明背景 */
+    backdrop-filter: blur(10px); /* 毛玻璃效果 */
+    border-radius: 15px; /* 圆角 */
+    text-align: center;
+    margin: 0 auto; /* 居中对齐 */
+}
+
+/* 单个产品展示模块样式：宽度、内边距、文本样式、毛玻璃效果 */
 .feature {
-    width: 30%;
+    flex: 1; /* 每个模块占据相同的宽度 */
+    max-width: 300px; /* 设置最大宽度 */
     padding: 20px;
+    background-color: rgba(255, 255, 255, 0.2); /* 半透明背景 */
+    backdrop-filter: blur(5px); /* 毛玻璃效果 */
+    border-radius: 15px; /* 圆角效果 */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* 轻微阴影效果，提升立体感 */
+    text-align: center;
+    margin: 0 15px; /* 确保模块之间有间距 */
+    transition: transform 0.3s ease; /* 悬停时的缩放过渡 */
+    display: flex;
+    flex-direction: column; /* 保证内容垂直对齐 */
+    justify-content: space-between;
 }
 
-/* 
-产品标题样式：
-设置产品标题的字体大小和颜色。
-*/
+/* 悬停时为模块添加缩放效果 */
+.feature:hover {
+    transform: scale(1.05); /* 鼠标悬停时放大效果 */
+}
+
+/* 产品标题样式：设置字体大小和颜色 */
 .feature h3 {
     font-size: 1.8rem;
-    color: #333;
+    color: white; /* 将标题颜色设置为白色 */
 }
 
-/* 
-产品描述文本样式：
-设置产品描述的字体大小和颜色。
-*/
+/* 产品描述文本样式：设置字体大小和颜色 */
 .feature p {
     font-size: 1rem;
-    color: #555;
+    color: white; /* 将描述文本颜色设置为白色 */
+    opacity: 0.9; /* 使文字略微透明，以增强视觉效果 */
 }
+
+
+/* 搜索框样式 */
+.search-bar {
+    padding: 10px;
+    width: 100%;
+    border-radius: 15px; /* 圆角效果 */
+    background: rgba(255, 255, 255, 0.2); /* 半透明背景 */
+    backdrop-filter: blur(10px); /* 毛玻璃效果 */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* 边框颜色 */
+    color: white; /* 文字颜色 */
+    font-size: 1rem;
+    outline: none; /* 移除输入框的默认边框 */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* 阴影效果 */
+    transition: background-color 0.3s ease, backdrop-filter 0.3s ease; /* 添加过渡效果 */
+}
+
+/* 搜索框在聚焦时的效果 */
+.search-bar:focus {
+    background-color: rgba(255, 255, 255, 0.3); /* 聚焦时背景稍微变亮 */
+    backdrop-filter: blur(15px); /* 聚焦时增强毛玻璃效果 */
+    border-color: rgba(255, 255, 255, 0.5); /* 聚焦时的边框 */
+}
+
+
+
+

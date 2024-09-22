@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>联系我们 - Jasminechip</title>
+    <!-- 引入CSS样式文件 -->
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+
+    <!-- 页头部分，包括导航栏 -->
+    <header>
+        <h1>联系我们</h1>
+        <div id="navbar"></div> <!-- 导航栏的占位符 -->
+
+        <script>
+            // 使用 fetch 动态加载导航栏
+            fetch('../includes/nav.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading navigation:', error));
+        </script>
+    </header>
+
+    <!-- 主内容区域 -->
+    <main>
+        <!-- 联系表单区块 -->
+        <section>
+            <h2>我们期待您的联系</h2>
+            <p>请填写下面的表单或通过电子邮件与我们联系。</p>
+
+            <!-- 简单的联系表单 -->
+            <form action="mailto:your-email@example.com" method="post" enctype="text/plain">
+                <label for="name">您的姓名:</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="email">您的邮箱:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="message">您的留言:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+                
+                <button type="submit">发送</button>
+            </form>
+        </section>
+
+        <!-- 联系方式 -->
+        <section>
+            <h2>我们的联系方式</h2>
+            <p>邮箱: contact@jasminechip.com</p>
+            <p>电话: +86 123 456 789</p>
+            <p>地址: 中国某市某街道 123 号</p>
+        </section>
+    </main>
+
+    <!-- 页脚部分 -->
+    <footer>
+        <p>&copy; 2024 Jasminechip</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>论坛 - Jasminechip</title>
+    <!-- 引入CSS样式文件 -->
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+
+    <!-- 页头部分，包括导航栏 -->
+    <header>
+        <h1>论坛</h1>
+        <div id="navbar"></div> <!-- 导航栏的占位符 -->
+
+        <script>
+            // 使用 fetch 动态加载导航栏
+            fetch('../includes/nav.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading navigation:', error));
+        </script>
+    </header>
+
+    <!-- 主内容区域 -->
+    <main>
+        <section>
+            <h2>讨论区</h2>
+            <p>欢迎参与我们的论坛讨论，您可以在下方发帖或查看他人的讨论。</p>
+
+            <!-- 发帖表单 -->
+            <form id="postForm">
+                <label for="username">您的姓名:</label>
+                <input type="text" id="username" name="username" required>
+
+                <label for="postContent">发帖内容:</label>
+                <textarea id="postContent" name="postContent" rows="5" required></textarea>
+                
+                <button type="submit">发布</button>
+            </form>
+        </section>
+
+        <!-- 论坛帖子列表 -->
+        <section>
+            <h3>论坛帖子</h3>
+            <ul id="postList">
+                <!-- 帖子会在这里动态生成 -->
+            </ul>
+        </section>
+    </main>
+
+    <!-- 页脚部分 -->
+    <footer>
+        <p>&copy; 2024 Jasminechip</p>
+    </footer>
+
+    <!-- 添加JavaScript脚本 -->
+    <script>
+        // 假设没有后端，这里使用 JavaScript 来模拟帖子提交和显示
+        const postForm = document.getElementById("postForm");
+        const postList = document.getElementById("postList");
+
+        // 监听表单提交事件
+        postForm.addEventListener("submit", function(event) {
+            event.preventDefault(); // 阻止页面刷新
+            
+            // 获取用户名和帖子内容
+            const username = document.getElementById("username").value;
+            const postContent = document.getElementById("postContent").value;
+            
+            // 创建新的帖子元素
+            const li = document.createElement("li");
+            li.innerHTML = `<strong>${username}</strong>: ${postContent}`;
+            
+            // 将帖子添加到帖子列表中
+            postList.appendChild(li);
+
+            // 清空表单
+            postForm.reset();
+        });
+    </script>
+
+</body>
+</html>
