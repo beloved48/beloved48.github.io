@@ -306,6 +306,20 @@ footer {
     border-color: rgba(255, 255, 255, 0.5); /* 聚焦时的边框 */
 }
 
+/* 英雄区样式 */
+.hero {
+    max-width: 800px; /* 限制英雄区块的最大宽度 */
+    margin: 0 auto; /* 使整个英雄区块居中 */
+    padding: 20px; /* 添加内边距 */
+    text-align: center; /* 内容居中 */
+}
 
+.full-image {
+    width: 80%; /* 图片宽度为80%，可以调整数值 */
+    height: auto; /* 保持宽高比 */
+    max-width: 600px; /* 限制最大宽度 */
+    display: block;
+    margin: 0 auto; /* 图片居中 */
+}
 
 
